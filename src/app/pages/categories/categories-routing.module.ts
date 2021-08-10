@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CategoriesComponent } from './categories.component';
+import { ListCategoriesComponent } from './list-categories/list-categories.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: CategoriesComponent
+        component: CategoriesComponent,
+        children: [
+            { path: '', redirectTo: 'list', pathMatch: 'full' },
+            { path: 'list', component: ListCategoriesComponent },
+        ]
     }
 ]
 

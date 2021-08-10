@@ -18,7 +18,7 @@ export class BaseService {
     return this.http.get<ApiData<T>>(`${API_URL}/${path}`);
   }
 
-  protected post<T>(path: string, body: T): Observable<ApiData<T>>{
+  protected post<T>(path: string, body: Object): Observable<ApiData<T>>{
     return this.http.post<ApiData<T>>(`${API_URL}/${path}`, body);
   }
 

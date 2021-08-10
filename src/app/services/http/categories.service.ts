@@ -14,12 +14,12 @@ export class CategoriesService extends BaseService {
     super(httpClient);
   }
 
-  public getCategories(): Observable<ApiData<Category>>{
-    return super.get<Category>(`category`);
+  public getCategories(): Observable<ApiData<Array<Category>>>{
+    return super.get<Array<Category>>(`category`);
   }
 
   public postCategory(category: Category): Observable<ApiData<Category>>{
-    return super.post<Category>(`category`, category);
+    return super.post<Category>(`category`, { category });
   }
 
   public deleteCategory(id: number): Observable<ApiData<Category>>{
