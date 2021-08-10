@@ -8,6 +8,7 @@ import { SidebarModule } from './components/sidebar/sidebar.module';
 import { HomeModule } from './pages/home/home.module';
 import { CategoriesModule } from './pages/categories/categories.module';
 import { DevicesModule } from './pages/devices/devices.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { DevicesModule } from './pages/devices/devices.module';
     HomeModule,
     CategoriesModule,
     DevicesModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
