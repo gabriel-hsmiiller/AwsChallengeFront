@@ -1,4 +1,4 @@
-<app-sidebar></app-sidebar>
+<app-sidebar [@menu]="isOpen ? 'open' : 'closed'" [stateMenu]="isOpen" (toggleMenu)="toggle()"></app-sidebar>
 <div class="app__content">
     <router-outlet></router-outlet>
 </div>

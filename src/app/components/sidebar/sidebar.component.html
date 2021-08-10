@@ -1,14 +1,21 @@
-<nav class="sidebar">
-    <mat-icon class="sidebar__icon">menu</mat-icon>
+<nav class="sidebar" [ngClass]="{'--open': stateMenu}">
+    <mat-icon class="sidebar__icon --menu" (click)="toggle()">menu</mat-icon>
     <div class="sidebar__links">
         <a 
         *ngFor="let route of routes" 
         [routerLink]="[route.path]" 
         [attr.aria-label]="route.legend"
         [title]="route.legend">
-            <mat-icon class="sidebar__icon" aria-hidden>
+            <mat-icon 
+            [ngClass]="{'--active': this.activeRoute === route.path}"
+            class="sidebar__icon" 
+            aria-hidden>
                 {{ route.icon }}
             </mat-icon>
+            <span 
+            class="sidebar__label" 
+            [ngClass]="{'--active': this.activeRoute === route.path}" 
+            *ngIf="stateMenu">{{ route.legend }}</span>
         </a>
     </div>
 </nav>

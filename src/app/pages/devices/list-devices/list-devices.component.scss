@@ -1,0 +1,16 @@
+table{
+    width: 75%;
+
+    th:last-of-type,td:last-of-type{
+        text-align: end;
+    }
+}
+
+.list-devices{
+
+    &__total{
+        margin: 8px;
+        font-size: 1.1em;
+        color: #333;
+    }
+}

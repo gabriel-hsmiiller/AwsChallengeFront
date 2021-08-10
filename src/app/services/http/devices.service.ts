@@ -14,12 +14,12 @@ export class DevicesService extends BaseService {
     super(httpClient);
   }
 
-  public getDevices(): Observable<ApiData<Device>>{
-    return super.get<Device>(`device`);
+  public getDevices(): Observable<ApiData<Array<Device>>>{
+    return super.get<Array<Device>>(`device`);
   }
 
   public postDevice(device: Device): Observable<ApiData<Device>>{
-    return super.post<Device>(`device`, device);
+    return super.post<Device>(`device`, { device });
   }
 
   public deleteDevice(id: number): Observable<ApiData<Device>>{

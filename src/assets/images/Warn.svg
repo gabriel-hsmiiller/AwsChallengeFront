@@ -1,0 +1,37 @@
+<svg width="213" height="199" viewBox="40 40 130 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        #border, #exc{
+            stroke: #C79413;
+            stroke-dasharray: 500;
+            stroke-dashoffset: 200;
+
+            animation: animate-stroke 1s ease-in-out;
+        }
+
+        #sign{
+            stroke: #C79413;
+            stroke-dasharray: 500;
+            stroke-dashoffset: 100;
+            fill: transparent;
+
+            animation: animate-stroke 1s ease-in-out, animate-background .2s .5s ease-in-out forwards;
+        }
+
+        @keyframes animate-stroke {
+            from {
+                stroke-dashoffset: 500;
+            }
+        }
+
+        @keyframes animate-background {
+            to {
+                
+                fill: #C79413;
+            }
+        }
+    </style>    
+
+    <path id="border" d="M77.9671 79.2542C67.0033 85.3127 58.2955 94.758 53.1462 106.177C47.9969 117.596 46.683 130.376 49.4009 142.604C52.1188 154.832 58.7225 165.851 68.2242 174.014C77.7259 182.177 89.6149 187.044 102.113 187.888C114.611 188.731 127.046 185.506 137.559 178.694C148.071 171.883 156.096 161.851 160.433 150.099C164.769 138.347 165.185 125.507 161.617 113.499C158.049 101.492 150.689 90.9618 140.639 83.4848" stroke="#C79413" stroke-width="6"/>
+    <path id="sign" d="M106 47.5L109.596 45.7477C108.92 44.3618 107.509 43.4874 105.967 43.5001C104.425 43.5129 103.028 44.4105 102.376 45.8075L106 47.5ZM60 146L56.3757 144.307C55.7972 145.546 55.8915 146.995 56.6258 148.148C57.3601 149.302 58.6327 150 60 150V146ZM154 146V150C155.379 150 156.661 149.29 157.392 148.12C158.123 146.951 158.2 145.487 157.596 144.248L154 146ZM102.376 45.8075L56.3757 144.307L63.6243 147.693L109.624 49.1925L102.376 45.8075ZM60 150H154V142H60V150ZM157.596 144.248L109.596 45.7477L102.404 49.2523L150.404 147.752L157.596 144.248Z" fill="#C79413"/>
+    <path id="exc" d="M106 75V118M106 125V133" stroke="#C79413" stroke-width="8" stroke-linejoin="bevel"/>
+</svg>

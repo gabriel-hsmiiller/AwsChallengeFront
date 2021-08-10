@@ -3,47 +3,80 @@
 
     height: 100vh;
     width: 60px;
-    padding: 8px;
+    padding: 12px;
 
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
+    z-index: 1;
     
     background-color: #333;
     
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
+
+    transition: width .3s ease-out;
+
+    user-select: none;
+
+    &.--open{
+        width: 300px;
+    }
 
     &__icon{
         $size: 32px;
-
-        color: #a0a0a0;
 
         font-size: $size;
         width: $size;
         height: $size;
 
         cursor: pointer;
-        transition: color .125s ease-in-out;
+        
+        &.--menu{            
+            transition: color .125s ease-in-out;
+            color: #a0a0a0;
 
-        &:hover{
-            color: white;
+            &:hover{
+                color: white;
+            }
         }
+    }
+
+    &__label{
+        margin-left: 8px;
+        display: block;
+        white-space: nowrap;
     }
 
     &__links{
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
 
         margin-top: 2rem;
 
         #{$this}__icon{
             margin: 8px auto;
+        }
+
+        .--active{
+            color: white;
+        }
+
+        a{
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: color .125s ease-in-out;
+            color: #a0a0a0;
+
+            &:hover{
+                color: white;
+            }
         }
     }
 }

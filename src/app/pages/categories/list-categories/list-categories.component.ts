@@ -1,11 +1,12 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog'
+import { FormBuilder, FormControl } from '@angular/forms'
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 
 import { Category } from 'src/app/models/category'
 import { CategoriesService } from 'src/app/services/http/categories.service';
+import { ModalService } from 'src/app/services/utils/modal.service';
 
 @Component({
   selector: 'app-list-categories',
@@ -14,32 +15,36 @@ import { CategoriesService } from 'src/app/services/http/categories.service';
 })
 export class ListCategoriesComponent implements OnInit {
 
-  categoryCols: Array<string> = ['Id','Name'];
-  allCols: Array<string> = [...this.categoryCols, 'Action']
-  data$: Observable<Array<Category>> = null;
-  total: number = 0;
+  public categoryCols: Array<string> = ['Id','Name'];
+  public allCols: Array<string> = [...this.categoryCols, 'Action']
+  public data$: Observable<Array<Category>> = null;
+  public total: number = 0;
 
-  categoryControl!: FormControl;
+  public categoryControl!: FormControl;
 
   constructor(
-    private dialog: MatDialog,
+    private modalService: ModalService,
     private categoriesService: CategoriesService, 
     builder: FormBuilder) { 
     this.categoryControl = builder.control('');
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.getCategories();
   }
 
-  getCategories(){
+  private getCategories(){
     this.data$ = this.categoriesService.getCategories().pipe(
       tap(api => this.total = api.data.total),
       map(api => api.data.content),
-    )
+      catchError((error: HttpErrorResponse) => {
+        this.modalService.openErrorModal(error);
+        throw error;
+      })
+    );
   }
 
-  addCategory(){
+  public addCategory(){
     if(!!this.categoryControl.value){
       const category: Category = {
         Name: this.categoryControl.value
@@ -48,18 +53,31 @@ export class ListCategoriesComponent implements OnInit {
       this.categoriesService.postCategory(category).subscribe(success => {
         this.getCategories();
         this.categoryControl.reset();
+        this.modalService.openSucessModal('Category sucessfully added');
       }, error => {
+        this.modalService.openErrorModal(error);
         console.log(error);
-      })
+      });
+    } else {
+      this.modalService.openWarnModal('`Name` is required.')
     }
   }
 
-  removeCategory(id: number){
+  public removeCategory(id: number){
+    this.modalService.openConfirmModal(
+      'Do you want to remove this category? This action cannot be undone.',
+      () => this.confirmRemoveCategory(id)
+    );
+  }
+  
+  private confirmRemoveCategory(id: number){
     this.categoriesService.deleteCategory(id).subscribe(success => {
       this.getCategories();
-    }, error => {
+      this.modalService.openSucessModal('Category sucessfully removed');
+    }, (error: HttpErrorResponse) => {
+      this.modalService.openErrorModal(error);
       console.log(error);
-    })
+    });
   }
 
 }

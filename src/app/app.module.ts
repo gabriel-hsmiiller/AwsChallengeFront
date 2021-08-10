@@ -10,6 +10,11 @@ import { CategoriesModule } from './pages/categories/categories.module';
 import { DevicesModule } from './pages/devices/devices.module';
 import { HttpClientModule } from '@angular/common/http';
 
+import { ErrorModalModule } from 'src/app/components/error-modal/error-modal.module'
+import { ConfirmModalModule } from 'src/app/components/confirm-modal/confirm-modal.module'
+import { WarnModalModule } from 'src/app/components/warn-modal/warn-modal.module'
+import { SuccessModalModule } from 'src/app/components/success-modal/success-modal.module'
+
 @NgModule({
   declarations: [
     AppComponent
@@ -22,7 +27,11 @@ import { HttpClientModule } from '@angular/common/http';
     HomeModule,
     CategoriesModule,
     DevicesModule,
-    HttpClientModule
+    HttpClientModule,
+    ErrorModalModule,
+    ConfirmModalModule,
+    WarnModalModule,
+    SuccessModalModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
