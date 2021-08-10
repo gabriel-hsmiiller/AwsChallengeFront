@@ -1,0 +1,14 @@
+<nav class="sidebar">
+    <mat-icon class="sidebar__icon">menu</mat-icon>
+    <div class="sidebar__links">
+        <a 
+        *ngFor="let route of routes" 
+        [routerLink]="[route.path]" 
+        [attr.aria-label]="route.legend"
+        [title]="route.legend">
+            <mat-icon class="sidebar__icon" aria-hidden>
+                {{ route.icon }}
+            </mat-icon>
+        </a>
+    </div>
+</nav>
