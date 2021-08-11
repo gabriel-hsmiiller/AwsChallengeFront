@@ -32,8 +32,11 @@ export class ListDevicesComponent implements OnInit {
     private categoriesService: CategoriesService,
     builder: FormBuilder) { 
     this.deviceForm = builder.group({
-      PartNumber: [''],
-      Color: [''],
+      PartNumber: ['', Validators.min(0)],
+      Color: ['', [
+        Validators.maxLength(16), 
+        Validators.pattern('^[a-zA-Z \-]*$')
+      ]],
       Category: [''],
     });
   }
