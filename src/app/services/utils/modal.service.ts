@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 import { ConfirmModalComponent } from 'src/app/components/confirm-modal/confirm-modal.component';
 import { ErrorModalComponent } from 'src/app/components/error-modal/error-modal.component';
@@ -14,8 +14,8 @@ export class ModalService {
 
   constructor(private dialog: MatDialog) { }
 
-  public openErrorModal(error: HttpErrorResponse){
-    this.dialog.open(ErrorModalComponent, {
+  public openErrorModal(error: HttpErrorResponse): MatDialogRef<ErrorModalComponent>{
+    return this.dialog.open(ErrorModalComponent, {
       data: {
         status: error.status,
         message: error.error.message || error.message
@@ -24,7 +24,7 @@ export class ModalService {
     });
   }
 
-  public openConfirmModal(message: string, callback: Function){
+  public openConfirmModal(message: string, callback: Function): MatDialogRef<ConfirmModalComponent>{
     const ref = this.dialog.open(ConfirmModalComponent, {
       data: {
         message: message,
@@ -35,18 +35,19 @@ export class ModalService {
       },
       width: '50%',
     });
+    return ref;
   }
 
-  public openSucessModal(message: string){
-    this.dialog.open(SuccessModalComponent, {
+  public openSucessModal(message: string): MatDialogRef<SuccessModalComponent> {
+    return this.dialog.open(SuccessModalComponent, {
       data: {
         message
       },
     });
   }
 
-  public openWarnModal(message: string){
-    this.dialog.open(WarnModalComponent, {
+  public openWarnModal(message: string): MatDialogRef<WarnModalComponent>{
+    return this.dialog.open(WarnModalComponent, {
       data: {
         message
       },

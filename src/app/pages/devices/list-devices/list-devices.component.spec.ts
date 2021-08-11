@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { DevicesModule } from '../devices.module';
 
 import { ListDevicesComponent } from './list-devices.component';
 
@@ -8,7 +9,8 @@ describe('ListDevicesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListDevicesComponent ]
+      declarations: [ ListDevicesComponent ],
+      imports: [DevicesModule]
     })
     .compileComponents();
   }));
@@ -21,5 +23,12 @@ describe('ListDevicesComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it(`should load devices when created`, () => {
+    component.data$.subscribe(data => {
+      expect(data).toBeTruthy();
+    });
+    fixture.detectChanges();
   });
 });

@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CategoriesModule } from '../categories.module';
 
 import { ListCategoriesComponent } from './list-categories.component';
 
@@ -8,7 +9,8 @@ describe('ListCategoriesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListCategoriesComponent ]
+      declarations: [ ListCategoriesComponent ],
+      imports: [CategoriesModule]
     })
     .compileComponents();
   }));
@@ -21,5 +23,12 @@ describe('ListCategoriesComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it(`should load categories when created`, () => {
+    component.data$.subscribe(data => {
+      expect(data).toBeTruthy();
+    });
+    fixture.detectChanges();
   });
 });

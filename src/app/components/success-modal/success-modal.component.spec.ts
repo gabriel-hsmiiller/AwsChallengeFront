@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SuccessModalComponent } from './success-modal.component';
+import { SuccessModalModule } from './success-modal.module';
 
 describe('SuccessModalComponent', () => {
   let component: SuccessModalComponent;
@@ -8,7 +9,8 @@ describe('SuccessModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SuccessModalComponent ]
+      declarations: [ SuccessModalComponent ],
+      imports: [SuccessModalModule]
     })
     .compileComponents();
   }));

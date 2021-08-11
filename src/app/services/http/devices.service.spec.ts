@@ -13,4 +13,10 @@ describe('DevicesService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+  
+  it(`#${service.getDevices.prototype.name} should get devices when subscribed`, () => {
+    service.getDevices().subscribe(success => {
+      expect(success.data.content).toBeTruthy();
+    })
+  });
 });
