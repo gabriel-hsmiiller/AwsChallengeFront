@@ -68,6 +68,10 @@ export class ListDevicesComponent implements OnInit {
       this.modalService.openWarnModal('`PartNumber` must be positive')
       return;
     }
+    if(!device.Color || !device.PartNumber || !device.Category){
+      this.modalService.openWarnModal('All fields are required.')
+      return;
+    }
 
     this.devicesService.postDevice(device).subscribe(success => {
       this.getDevices();
@@ -111,8 +115,8 @@ export class ListDevicesComponent implements OnInit {
   }
 
   public getFormValid(): boolean{
-    return Object.keys(this.deviceForm.controls).reduce((_,curr) => {
-      if(!this.deviceForm.get(curr).value) return false;
+    return Object.keys(this.deviceForm.controls).reduce((prev,curr) => {
+      if(!prev || !this.deviceForm.get(curr).value) return false;
       return true;
     }, true);
   }
