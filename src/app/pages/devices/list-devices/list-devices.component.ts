@@ -60,6 +60,10 @@ export class ListDevicesComponent implements OnInit {
       this.modalService.openWarnModal('`Color` cannot contain numbers.')
       return;
     }
+    if(device.Color.length > 16){
+      this.modalService.openWarnModal('`Color` length is too long.')
+      return;
+    }
     if(Math.abs(Number(device.PartNumber)) !== Number(device.PartNumber)){
       this.modalService.openWarnModal('`PartNumber` must be positive')
       return;

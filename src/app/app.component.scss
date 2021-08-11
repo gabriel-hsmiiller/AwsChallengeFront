@@ -3,4 +3,17 @@
     width: calc(100vw - 60px);
     height: 100vh;
     background-color: #eee;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: #eee; 
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background: rgba(#666, .5); 
+    }
 }
